@@ -31,7 +31,6 @@ public class SeleccionTest extends TestCase {
 
 		@Override
 		public Individuo generarRandom() {
-			// TODO Auto-generated method stub
 			return null;
 		}
 	};

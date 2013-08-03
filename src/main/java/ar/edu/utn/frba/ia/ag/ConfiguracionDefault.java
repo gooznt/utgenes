@@ -2,17 +2,17 @@ package main.java.ar.edu.utn.frba.ia.ag;
 
 import main.java.ar.edu.utn.frba.ia.ag.cruzamiento.Simple;
 import main.java.ar.edu.utn.frba.ia.ag.mutacion.MutacionSimple;
-import main.java.ar.edu.utn.frba.ia.ag.paro.CantidadDeVueltas;
+import main.java.ar.edu.utn.frba.ia.ag.paro.CantidadDeCiclos;
 import main.java.ar.edu.utn.frba.ia.ag.seleccion.Torneo;
 
 public class ConfiguracionDefault extends Configuracion {
 	
 	public ConfiguracionDefault() {
 		
-		super(new CantidadDeVueltas(99L), // criterio de paro
+		super(new CantidadDeCiclos(99L), // criterio de paro
 				Boolean.TRUE, 999, 10, // mentenerPoblacionInicial, cantIndividuosIniciales, cantSeleccion
 				new Torneo(), // seleccion
-				new Simple(3), // cruzamiento
+				new Simple(), // cruzamiento
 				new MutacionSimple(0.2)); // mutacion
 	}
 

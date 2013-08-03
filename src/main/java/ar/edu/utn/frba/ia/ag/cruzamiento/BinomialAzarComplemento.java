@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
+import main.java.ar.edu.utn.frba.ia.ag.UTgeNesUtils;
 
 public class BinomialAzarComplemento extends Cruzamiento {
 	
@@ -16,8 +17,8 @@ public class BinomialAzarComplemento extends Cruzamiento {
 		
 		for (Field field : padreA.getClass().getDeclaredFields()) {
 			
-			getter = armarGetter(padreA, field);
-			setter = armarSetter(padreA, field);
+			getter = UTgeNesUtils.armarGetter(padreA, field);
+			setter = UTgeNesUtils.armarSetter(padreA, field);
 			
 			try {
 				

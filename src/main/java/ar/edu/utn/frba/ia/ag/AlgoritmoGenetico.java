@@ -31,12 +31,11 @@ public class AlgoritmoGenetico {
 		
 		for (int i = 0; i < this.configuracion.getPoblacionInicial(); i++) {
 			try {
-				this.agregarIndividuo((individuoClass.newInstance()).generarRandom());
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
+				this.agregarIndividuo(individuoClass.newInstance().generarRandom());
+			} catch (Exception e) {
+				System.err.println("No se puede crear una instancia de " + individuoClass.getName() + ". Probablemente no tenga un constructor vacio.");
 			}
+
 		}
 	}
 	

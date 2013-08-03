@@ -2,9 +2,19 @@ package main.java.ar.edu.utn.frba.ia.ag.cruzamiento;
 
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
 
-public class Simple extends Cruzamiento {
+public class SimplePuntoFijo extends Cruzamiento {
 	
+	Integer puntoDeCorte;
 	CruzamientoBinomialMascaraComplemento cruzamientoAuxiliarMascara;
+	
+	public SimplePuntoFijo(Integer puntoDeCorte) {
+		
+		if (puntoDeCorte == null) {
+			throw new RuntimeException("PuntoDeCorte inválido");
+		}
+		
+		this.puntoDeCorte = puntoDeCorte;
+	}
 	
 	@Override
 	protected void cruzar(Individuo padreA, Individuo padreB) {
@@ -19,9 +29,7 @@ public class Simple extends Cruzamiento {
 			
 			StringBuffer mascara = new StringBuffer();
 			
-			int cantX = (int)(Math.random() * individuo.getClass().getDeclaredFields().length);
-			
-			for (int i = 0; i < cantX; i++) {
+			for (int i = 0; i < this.puntoDeCorte; i++) {
 				mascara.append(X);
 			}
 			
