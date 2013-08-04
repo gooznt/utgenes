@@ -5,7 +5,7 @@ import java.util.List;
 
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
 
-public class Ranking extends MetodoDeSeleccion {
+public class Ranking extends Seleccion {
 
 	@Override
 	protected List<Individuo> seleccion(List<Individuo> individuos, int cantSeleccion) {

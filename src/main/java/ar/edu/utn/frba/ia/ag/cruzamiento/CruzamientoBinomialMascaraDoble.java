@@ -1,8 +1,8 @@
 package main.java.ar.edu.utn.frba.ia.ag.cruzamiento;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.logging.Logger;
 
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
 import main.java.ar.edu.utn.frba.ia.ag.UTgeNesUtils;
@@ -19,16 +19,16 @@ public class CruzamientoBinomialMascaraDoble extends Cruzamiento {
 		return mascaraA != null && mascaraB != null
 				&& !mascaraA.isEmpty() && !mascaraB.isEmpty()
 				&& mascaraA.length() != mascaraB.length()
-				&& mascaraA.replaceAll(X,"").replaceAll(Y, "").length() > 0
-				&& mascaraB.replaceAll(X,"").replaceAll(Y, "").length() > 0;
+				&& mascaraA.replaceAll(Cruzamiento.X,"").replaceAll(Cruzamiento.Y, "").length() > 0
+				&& mascaraB.replaceAll(Cruzamiento.X,"").replaceAll(Cruzamiento.Y, "").length() > 0;
 	}
 	
 	public CruzamientoBinomialMascaraDoble(String mascaraA, String mascaraB) {
 		
-		// Algunas validaciones
+		// Valido las mascaras
 		if (mascarasInvalidas(mascaraA, mascaraB)) {
 			
-			System.out.println("Máscara erronea. Usando máscara default XYXYXYXYXYXYXYXYXYXY");
+			Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Máscara erronea. Usando máscara default[(XY)*] y su complemento [(YX)*]");
 			
 			mascaraA = MASCARA_DEFAULT;
 			mascaraB = (new StringBuffer(MASCARA_DEFAULT).reverse().toString());
@@ -41,11 +41,27 @@ public class CruzamientoBinomialMascaraDoble extends Cruzamiento {
 	@Override
 	protected void cruzar(Individuo padreA, Individuo padreB) {
 		
+		if (MASCARA_DEFAULT.equals(this.mascaraA)) {
+			
+			this.mascaraA = "";
+			this.mascaraB = "";
+			
+			for (int i = 0; i < padreA.getClass().getDeclaredFields().length; i++) {
+				if (i % 2 == 0) {
+					this.mascaraA.concat(Cruzamiento.X);
+					this.mascaraB.concat(Cruzamiento.Y);
+				}
+				else {
+					this.mascaraA.concat(Cruzamiento.Y);
+					this.mascaraB.concat(Cruzamiento.X);
+				}
+			}
+		}
+		
 		// Controlo si la cantidad de elementos de la máscara es
 		// distinta a la cantidad de atributos de los individuos,alidaciones
-		if ((!(padreA.getClass().getDeclaredFields().length == this.mascaraA.length()) ||
-				!(padreA.getClass().getDeclaredFields().length == this.mascaraB.length())) &&
-			!this.mascaraA.equals(MASCARA_DEFAULT) && !this.mascaraA.equals(MASCARA_DEFAULT)) {
+		if (!(padreA.getClass().getDeclaredFields().length == this.mascaraA.length()) ||
+			!(padreA.getClass().getDeclaredFields().length == this.mascaraB.length())) {
 			
 			throw new RuntimeException("Mascara erronea");
 		}
@@ -53,45 +69,26 @@ public class CruzamientoBinomialMascaraDoble extends Cruzamiento {
 		Method getter = null;
 		Method setter = null;
 		
-		int i = 0;
-		
-		for (Field field : padreA.getClass().getDeclaredFields()) {
+		for (int i = 0; i < padreA.getClass().getDeclaredFields().length; i++) {
+			
+			Field field = padreA.getClass().getDeclaredFields()[i];
 			
 			getter = UTgeNesUtils.armarGetter(padreA, field);
 			setter = UTgeNesUtils.armarSetter(padreA, field);
 			
 			try {
-				
-				if (this.mascaraA.equals(MASCARA_DEFAULT)) {
-					
-					if (i % 2 > 0) {
-						
-						Object aux = getter.invoke(padreA);
-						
-						setter.invoke(padreA, getter.invoke(padreB));
-						setter.invoke(padreB, aux);
-					}
-				}
-				else {
-					
-					Object auxA = mascaraA.charAt(i) == X.toCharArray()[0] ? getter.invoke(padreA) : getter.invoke(padreB);
-					Object auxB = mascaraB.charAt(i) == X.toCharArray()[0] ? getter.invoke(padreA) : getter.invoke(padreB);
-					
-					setter.invoke(padreA, auxA);
-					setter.invoke(padreB, auxB);
-				}
-			}
-			catch (IllegalArgumentException e) {
-				System.out.println("ERROR en reflection 3");
-			}
-			catch (IllegalAccessException e) {
-				System.out.println("ERROR en reflection 4");
-			}
-			catch (InvocationTargetException e) {
-				System.out.println("ERROR en reflection 5");
+				setter.invoke(padreA, (this.mascaraA.charAt(i) == Cruzamiento.X.toCharArray()[0]) ? getter.invoke(padreA) : getter.invoke(padreB));
+				setter.invoke(padreB, (this.mascaraB.charAt(i) == Cruzamiento.X.toCharArray()[0]) ? getter.invoke(padreA) : getter.invoke(padreB));
 			}
 			
-			i++;
+			catch (Exception e) {
+				Logger.getLogger(
+					Logger.GLOBAL_LOGGER_NAME).severe(
+						"Fallo intentando acceder al atributo '"
+						+ field + "' de: " + padreA.toString()
+						+ " cruzado con " + padreB.toString()
+						+ " // CAUSA: " + e);
+			}
 		}
 	}
 }

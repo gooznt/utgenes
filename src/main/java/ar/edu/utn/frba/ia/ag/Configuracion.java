@@ -1,9 +1,12 @@
 package main.java.ar.edu.utn.frba.ia.ag;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import main.java.ar.edu.utn.frba.ia.ag.cruzamiento.Cruzamiento;
 import main.java.ar.edu.utn.frba.ia.ag.mutacion.Mutacion;
 import main.java.ar.edu.utn.frba.ia.ag.paro.CriterioDeParo;
-import main.java.ar.edu.utn.frba.ia.ag.seleccion.MetodoDeSeleccion;
+import main.java.ar.edu.utn.frba.ia.ag.seleccion.Seleccion;
 
 public abstract class Configuracion {
 	
@@ -11,7 +14,7 @@ public abstract class Configuracion {
 	protected boolean mantenerTamanoPoblacion;
 	protected int poblacionInicial;
 	protected int cantSeleccion; // solo es necesario si mantenerTamanoPoblacion es FALSE
-	protected MetodoDeSeleccion metodoDeSeleccion;
+	protected Seleccion metodoDeSeleccion;
 	protected Cruzamiento cruzamiento;
 	protected Mutacion mutacion;
 	
@@ -19,7 +22,7 @@ public abstract class Configuracion {
 					boolean mantenerTamanoPoblacion,
 					int poblacionInicial,
 					int cantSeleccion,
-					MetodoDeSeleccion metodoDeSeleccion,
+					Seleccion metodoDeSeleccion,
 					Cruzamiento cruzamiento,
 					Mutacion mutacion) {
 		
@@ -30,7 +33,12 @@ public abstract class Configuracion {
 		this.metodoDeSeleccion = metodoDeSeleccion;
 		this.cruzamiento = cruzamiento;
 		this.mutacion = mutacion;
+		this.setLogLevel();
 		
+	}
+	
+	public void setLogLevel() {
+		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).setLevel(Level.FINE);
 	}
 	
 	public void setCriterioDeParo(CriterioDeParo criterioDeParo) {
@@ -49,7 +57,7 @@ public abstract class Configuracion {
 		this.cantSeleccion = cantSeleccion;
 	}
 
-	public void setMetodoDeSeleccion(MetodoDeSeleccion metodoDeSeleccion) {
+	public void setMetodoDeSeleccion(Seleccion metodoDeSeleccion) {
 		this.metodoDeSeleccion = metodoDeSeleccion;
 	}
 
@@ -77,7 +85,7 @@ public abstract class Configuracion {
 		return mantenerTamanoPoblacion;
 	}
 
-	public MetodoDeSeleccion getMetodoDeSeleccion() {
+	public Seleccion getMetodoDeSeleccion() {
 		return metodoDeSeleccion;
 	}
 

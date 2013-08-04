@@ -12,7 +12,7 @@ public abstract class Cruzamiento {
 	
 	protected abstract void cruzar(Individuo padreA, Individuo padreB);
 	
-	public List<Individuo> cruzasIndividuos(List<Individuo> individuos) {
+	public List<Individuo> cruzarIndividuos(List<Individuo> individuos) {
 		
 		List<Individuo> nuevos = new ArrayList<Individuo>();
 		

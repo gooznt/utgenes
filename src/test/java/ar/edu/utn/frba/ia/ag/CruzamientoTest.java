@@ -31,7 +31,7 @@ public class CruzamientoTest extends TestCase {
 		
 		Cruzamiento cruzamiento = new CruzamientoBinomialMascaraComplemento(mascara);
 		
-		cruzamiento.cruzasIndividuos(individuos);
+		cruzamiento.cruzarIndividuos(individuos);
 		
 		assertEquals(individuos.get(0).toString(), padre.toString());
 		assertEquals(individuos.get(1).toString(), madre.toString());

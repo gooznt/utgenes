@@ -5,7 +5,7 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
-import main.java.ar.edu.utn.frba.ia.ag.seleccion.MetodoDeSeleccion;
+import main.java.ar.edu.utn.frba.ia.ag.seleccion.Seleccion;
 import main.java.ar.edu.utn.frba.ia.ag.seleccion.Ranking;
 
 import org.junit.Test;
@@ -42,7 +42,7 @@ public class SeleccionTest extends TestCase {
 		
 		unitaria.add(vacio);
 		
-		MetodoDeSeleccion selccion = new Ranking();
+		Seleccion selccion = new Ranking();
 		assertEquals(selccion.seleccionar(unitaria, 0), unitaria.size());
 	}
 	
@@ -54,7 +54,7 @@ public class SeleccionTest extends TestCase {
 		par.add(vacio);
 		par.add(vacio);
 		
-		MetodoDeSeleccion selccion = new Ranking();
+		Seleccion selccion = new Ranking();
 		assertEquals(selccion.seleccionar(par, 2), par);
 	}
 	
@@ -65,7 +65,7 @@ public class SeleccionTest extends TestCase {
 		
 		unitaria.add(vacio);
 		
-		MetodoDeSeleccion selccion = new Ranking();
+		Seleccion selccion = new Ranking();
 		assertEquals(selccion.seleccionar(unitaria, 0), unitaria.size());
 		
 	}

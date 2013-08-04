@@ -1,5 +1,7 @@
 package main.java.ar.edu.utn.frba.ia.ag.ejemplos.monedas;
 
+import java.util.logging.Logger;
+
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
 
 public class Monedero extends Individuo {
@@ -112,7 +114,7 @@ public class Monedero extends Individuo {
 		monedas.setMonedasDe1((int)Math.ceil(((totalDinero - tengo) * 100)));
 		tengo += monedas.getMonedasDe1() * 0.01;
 		
-		System.out.println("PLATA DEL MONEDERO: " + tengo + "/" + totalDinero);
+		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("PLATA DEL MONEDERO: " + tengo + "/" + totalDinero);
 		
 		return monedas;
 	}

@@ -9,7 +9,7 @@ public class Simple extends Cruzamiento {
 	@Override
 	protected void cruzar(Individuo padreA, Individuo padreB) {
 		
-		getCruzamientoAuxiliar(padreA).cruzar(padreA, padreB);
+		this.getCruzamientoAuxiliar(padreA).cruzar(padreA, padreB);
 		
 	}
 	
@@ -22,11 +22,11 @@ public class Simple extends Cruzamiento {
 			int cantX = (int)(Math.random() * individuo.getClass().getDeclaredFields().length);
 			
 			for (int i = 0; i < cantX; i++) {
-				mascara.append(X);
+				mascara.append(Cruzamiento.X);
 			}
 			
 			for (int i = mascara.length(); i < individuo.getClass().getDeclaredFields().length; i++) {
-				mascara.append(Y);
+				mascara.append(Cruzamiento.Y);
 			}
 			
 			this.cruzamientoAuxiliarMascara = new CruzamientoBinomialMascaraComplemento(mascara.toString());

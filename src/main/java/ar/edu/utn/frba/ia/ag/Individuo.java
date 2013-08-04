@@ -2,6 +2,7 @@ package main.java.ar.edu.utn.frba.ia.ag;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.logging.Logger;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -22,7 +23,12 @@ public abstract class Individuo implements Comparable<Individuo> {
 		try {
 			nuevoIndividuo = this.getClass().newInstance();
 		} catch (Exception e) {
-			System.err.println("No se puede crear una instancia de " + this.getClass().getName() + ". Probablemente no tenga un constructor vacio.");
+			Logger.getLogger(
+				Logger.GLOBAL_LOGGER_NAME).severe(
+					"No se puede crear una instancia de "
+					+ this.getClass().getName()
+					+ ". Probablemente no tenga un constructor vacio."
+					+ " // CAUSA: " + e);
 		}
 		
 		for (Field atributo : this.getClass().getDeclaredFields()) {
@@ -44,7 +50,11 @@ public abstract class Individuo implements Comparable<Individuo> {
 					}
 				}
 			} catch (Exception e) {
-				System.err.println("Fallo Generando atributo random " + atributo.getName());
+				Logger.getLogger(
+					Logger.GLOBAL_LOGGER_NAME).severe(
+						"Fallo Generando atributo random "
+						+ atributo.getName()
+						+ " // Causa: " + e);
 			}
 		}
 		
@@ -74,7 +84,7 @@ public abstract class Individuo implements Comparable<Individuo> {
 		
 		Field atributoAleatorio = this.getClass().getDeclaredFields()[(int)(Math.random() * this.getClass().getDeclaredFields().length)];
 		
-		System.out.println("Mutando atributo: " + atributoAleatorio.getName());
+		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Mutando atributo: " + atributoAleatorio.getName());
 		
 		Method getter = UTgeNesUtils.armarGetter(this, atributoAleatorio);
 		Method setter = UTgeNesUtils.armarSetter(this, atributoAleatorio);
@@ -84,10 +94,15 @@ public abstract class Individuo implements Comparable<Individuo> {
 			Individuo individuoRandom = this.generarRandom(); // genero uno nuevo individuo random sólo para robarle el atributo que necesito "mutado"
 			
 			setter.invoke(this, getter.invoke(individuoRandom)); // reemplazo el atributo de mi individuo por el atributo de mi individuo random
-			
 		}
 		catch (Exception e) {
-			System.err.println("Fallo intentando acceder al atributo '" + atributoAleatorio + "' del Idividuo: " + this.toString());
+			Logger.getLogger(
+				Logger.GLOBAL_LOGGER_NAME).severe(
+					"Fallo intentando acceder al atributo '"
+					+ atributoAleatorio
+					+ "' del Idividuo: "
+					+ this.toString()
+					+ "// CAUSA: " + e);
 		}
 		
 		return;

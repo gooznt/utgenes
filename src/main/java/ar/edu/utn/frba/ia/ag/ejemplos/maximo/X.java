@@ -30,8 +30,6 @@ public class X extends Individuo {
 		
 		x.setX(Math.random() * 15);
 		
-		System.out.println("Generando Individuo Random: " + x.toString());
-		
 		return x;
 	}
 	

@@ -1,53 +1,43 @@
 package main.java.ar.edu.utn.frba.ia.ag.cruzamiento;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
-import main.java.ar.edu.utn.frba.ia.ag.UTgeNesUtils;
 
 public class BinomialAzar extends Cruzamiento {
 	
+	CruzamientoBinomialMascaraDoble cruzamientoAuxiliarMascara;
+	
 	@Override
 	protected void cruzar(Individuo padreA, Individuo padreB) {
+		this.getCruzamientoAuxiliar(padreA).cruzar(padreA, padreB);
+	}
+	
+	private CruzamientoBinomialMascaraDoble getCruzamientoAuxiliar(Individuo individuo) {
 		
-		Method getter = null;
-		Method setter = null;
-		
-		for (Field field : padreA.getClass().getDeclaredFields()) {
+		if (this.cruzamientoAuxiliarMascara == null) {
 			
-			getter = UTgeNesUtils.armarGetter(padreA, field);
-			setter = UTgeNesUtils.armarSetter(padreA, field);
+			StringBuffer mascaraA = new StringBuffer();
+			StringBuffer mascaraB = new StringBuffer();
 			
-			try {
-				
-				Object auxA = getter.invoke(padreA);
-				Object auxB = getter.invoke(padreB);
+			for (int i = 0; i < individuo.getClass().getDeclaredFields().length; i++) {
 				
 				if (Math.random() <= 0.5) {
-					setter.invoke(padreA, auxA);
+					mascaraA.append(Cruzamiento.X);
 				}
 				else {
-					setter.invoke(padreA, auxB);
+					mascaraA.append(Cruzamiento.Y);
 				}
 				
 				if (Math.random() <= 0.5) {
-					setter.invoke(padreB, auxB);
+					mascaraB.append(Cruzamiento.X);
 				}
 				else {
-					setter.invoke(padreB, auxA);
+					mascaraB.append(Cruzamiento.Y);
 				}
 			}
-			catch (IllegalArgumentException e) {
-				System.out.println("ERROR en reflection 3");
-			}
-			catch (IllegalAccessException e) {
-				System.out.println("ERROR en reflection 4");
-			}
-			catch (InvocationTargetException e) {
-				System.out.println("ERROR en reflection 5");
-			}
+			
+			this.cruzamientoAuxiliarMascara = new CruzamientoBinomialMascaraDoble(mascaraA.toString(), mascaraB.toString());
 		}
+		
+		return this.cruzamientoAuxiliarMascara;
 	}
 }

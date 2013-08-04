@@ -22,16 +22,16 @@ public class MultiPunto extends Cruzamiento {
 	@Override
 	protected void cruzar(Individuo padreA, Individuo padreB) {
 		
-		getCruzamientoAuxiliar(padreA).cruzar(padreA, padreB);
+		this.getCruzamientoAuxiliar(padreA).cruzar(padreA, padreB);
 		
 	}
 	
 	String invertirTemplate(String template) {
-		if (template == null || template.isEmpty() || template.equals(Y)) {
-			return X;
+		if (template == null || template.isEmpty() || template.equals(Cruzamiento.Y)) {
+			return Cruzamiento.X;
 		}
 		else {
-			return Y;
+			return Cruzamiento.Y;
 		}
 	} 
 	
@@ -40,7 +40,7 @@ public class MultiPunto extends Cruzamiento {
 		if (this.cruzamientoAuxiliarMascara == null) {
 			
 			StringBuffer mascara = new StringBuffer();
-			String template = Y; // Inicializo en Y para que le primera vez me ponga X
+			String template = Cruzamiento.Y; // Inicializo en Y para que le primera vez me ponga X
 			
 			for (Integer puntoDeCorte : this.puntosDeCorte) {
 				

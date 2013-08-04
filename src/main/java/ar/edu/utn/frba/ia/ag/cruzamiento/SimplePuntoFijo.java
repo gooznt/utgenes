@@ -19,7 +19,7 @@ public class SimplePuntoFijo extends Cruzamiento {
 	@Override
 	protected void cruzar(Individuo padreA, Individuo padreB) {
 		
-		getCruzamientoAuxiliar(padreA).cruzar(padreA, padreB);
+		this.getCruzamientoAuxiliar(padreA).cruzar(padreA, padreB);
 		
 	}
 	
@@ -30,11 +30,11 @@ public class SimplePuntoFijo extends Cruzamiento {
 			StringBuffer mascara = new StringBuffer();
 			
 			for (int i = 0; i < this.puntoDeCorte; i++) {
-				mascara.append(X);
+				mascara.append(Cruzamiento.X);
 			}
 			
 			for (int i = mascara.length(); i < individuo.getClass().getDeclaredFields().length; i++) {
-				mascara.append(Y);
+				mascara.append(Cruzamiento.Y);
 			}
 			
 			this.cruzamientoAuxiliarMascara = new CruzamientoBinomialMascaraComplemento(mascara.toString());
