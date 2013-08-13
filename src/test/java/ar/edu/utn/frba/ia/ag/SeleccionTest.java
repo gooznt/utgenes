@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.TestCase;
+import main.java.ar.edu.utn.frba.ia.ag.Estado;
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
-import main.java.ar.edu.utn.frba.ia.ag.seleccion.Seleccion;
 import main.java.ar.edu.utn.frba.ia.ag.seleccion.Ranking;
+import main.java.ar.edu.utn.frba.ia.ag.seleccion.Seleccion;
 
 import org.junit.Test;
 
@@ -38,12 +39,12 @@ public class SeleccionTest extends TestCase {
 	@Test
 	public void torneoCantMenorTest() {
 		
-		List<Individuo> unitaria = new ArrayList<Individuo>();
+		List<Individuo> unSoloIndividuo = new ArrayList<Individuo>();
 		
-		unitaria.add(vacio);
+		unSoloIndividuo.add(vacio);
 		
-		Seleccion selccion = new Ranking();
-		assertEquals(selccion.seleccionar(unitaria, 0), unitaria.size());
+		Seleccion selccion = new Ranking(2);
+		assertEquals(selccion.seleccionar(unSoloIndividuo, new Estado()), unSoloIndividuo.size());
 	}
 	
 	@Test
@@ -54,19 +55,19 @@ public class SeleccionTest extends TestCase {
 		par.add(vacio);
 		par.add(vacio);
 		
-		Seleccion selccion = new Ranking();
-		assertEquals(selccion.seleccionar(par, 2), par);
+		Seleccion selccion = new Ranking(0);
+		assertEquals(selccion.seleccionar(par, new Estado()), par);
 	}
 	
 	@Test
 	public void rankingCantMenorTest() {
 		
-		List<Individuo> unitaria = new ArrayList<Individuo>();
+		List<Individuo> unSoloIndividuo = new ArrayList<Individuo>();
 		
-		unitaria.add(vacio);
+		unSoloIndividuo.add(vacio);
 		
-		Seleccion selccion = new Ranking();
-		assertEquals(selccion.seleccionar(unitaria, 0), unitaria.size());
+		Seleccion selccion = new Ranking(0);
+		assertEquals(selccion.seleccionar(unSoloIndividuo, new Estado()), unSoloIndividuo.size());
 		
 	}
 	

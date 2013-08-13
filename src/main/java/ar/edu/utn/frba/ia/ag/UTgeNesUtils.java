@@ -45,4 +45,9 @@ public abstract class UTgeNesUtils {
 		return field.getName().toUpperCase().charAt(0) + field.getName().substring(1);
 	}
 	
+	public static Object alguno(Object[] elementos) {
+		
+		return elementos[(int)(Math.random() * elementos.length)];
+	}
+	
 }

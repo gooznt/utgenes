@@ -10,7 +10,7 @@ public class ConfiguracionDefault extends Configuracion {
 	public ConfiguracionDefault() {
 		
 		super(new CantidadDeCiclos(99L), // criterio de paro
-				Boolean.TRUE, 999, 10, // mentenerPoblacionInicial, cantIndividuosIniciales, cantSeleccion
+				999, 10, // cantIndividuosIniciales, cantSeleccion
 				new Torneo(), // seleccion
 				new Simple(), // cruzamiento
 				new MutacionSimple(0.2)); // mutacion

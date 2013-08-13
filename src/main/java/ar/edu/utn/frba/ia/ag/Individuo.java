@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-public abstract class Individuo implements Comparable<Individuo> {
+public abstract class Individuo implements Comparable<Individuo>, Cloneable {
 	
 	public abstract double aptitud();
 	
@@ -62,6 +62,42 @@ public abstract class Individuo implements Comparable<Individuo> {
 		
 	}
 	
+	/**
+	 * Crea un individuo y le settea los atributos de *this*
+	 */
+	@Override
+	public Individuo clone() {
+		
+		Individuo nuevoIndividuo = null;
+		
+		try {
+			nuevoIndividuo = this.getClass().newInstance();
+		} catch (Exception e) {
+			Logger.getLogger(
+				Logger.GLOBAL_LOGGER_NAME).severe(
+					"No se puede crear una instancia de "
+					+ this.getClass().getName()
+					+ ". Probablemente no tenga un constructor vacio."
+					+ " // CAUSA: " + e);
+		}
+		
+		for (Field atributo : this.getClass().getDeclaredFields()) {
+			
+			try {
+				UTgeNesUtils.armarSetter(nuevoIndividuo, atributo).invoke(nuevoIndividuo, UTgeNesUtils.armarGetter(this, atributo).invoke(this));
+			} catch (Exception e) {
+				Logger.getLogger(
+					Logger.GLOBAL_LOGGER_NAME).severe(
+						"Fallo Clonando atributo "
+						+ atributo.getName()
+						+ " // Causa: " + e);
+			}
+		}
+		
+		return nuevoIndividuo;
+		
+	}
+	
 	public boolean esMasAptoQue(Individuo otroIndividuo) {
 		return this.aptitud() > otroIndividuo.aptitud();
 	}
@@ -82,7 +118,7 @@ public abstract class Individuo implements Comparable<Individuo> {
 	 * */
 	public void mutar() {
 		
-		Field atributoAleatorio = this.getClass().getDeclaredFields()[(int)(Math.random() * this.getClass().getDeclaredFields().length)];
+		Field atributoAleatorio = (Field)UTgeNesUtils.alguno(this.getClass().getDeclaredFields());
 		
 		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Mutando atributo: " + atributoAleatorio.getName());
 		

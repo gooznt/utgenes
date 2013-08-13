@@ -11,8 +11,7 @@ public class AlgoritmoGenetico {
 	private Configuracion configuracion;
 	private List<Individuo> individuos;
 	private Class<? extends Individuo> individuoClass;
-	private List<Double> aptitudesPromedio = new ArrayList<Double>();
-	private List<Individuo> individuosDestacados = new ArrayList<Individuo>();
+	private Estado estado = new Estado();
 	
 	protected void agregarIndividuo(Individuo individuo) {
 		
@@ -59,13 +58,13 @@ public class AlgoritmoGenetico {
 		
 		while (!this.configuracion.getCriterioDeParo().parar(this.individuos)) {
 			
+			this.estadisticas(iteracion);
+			
 			this.seleccion();
 			
 			this.cruzamiento();
 			
 			this.mutacion();
-			
-			this.estadisticas(iteracion);
 			
 			iteracion++;
 		}
@@ -91,20 +90,18 @@ public class AlgoritmoGenetico {
 			if (individuo.aptitud() > individuoDestacado.aptitud()) {
 				individuoDestacado = individuo;
 			}
+			
 		}
 		
-		this.aptitudesPromedio.add(totalAptitudes / this.individuos.size());
-		this.individuosDestacados.add(individuoDestacado);
+		this.estado.agregarTotalAptitudes(totalAptitudes);
+		this.estado.agregarAptitudesPromedio(totalAptitudes / this.individuos.size());
+		this.estado.agregarIndividuosDestacados(individuoDestacado);
+		this.estado.setCiclos(iteracion);
 	}
 	
 	private void seleccion() {
+		this.individuos = this.configuracion.getMetodoDeSeleccion().seleccionar(this.individuos, this.estado);
 		
-		if(this.configuracion.getMantenerTamanoPoblacion()){
-			this.configuracion.getMetodoDeSeleccion().seleccionar(this.individuos, this.configuracion.getPoblacionInicial());
-		}
-		else {
-			this.configuracion.getMetodoDeSeleccion().seleccionar(this.individuos, this.configuracion.getCantSeleccion());
-		}
 	}
 	
 	private void cruzamiento() {
@@ -117,10 +114,10 @@ public class AlgoritmoGenetico {
 	
 	private void loggearEstado() {
 		
-		for (int i = 0; i < individuosDestacados.size(); i++) {
+		for (int i = 0; i < this.estado.getIndividuosDestacados().size(); i++) {
 			
-			Individuo individuo = individuosDestacados.get(i);
-			Double aptitudPromedio = aptitudesPromedio.get(i);
+			Individuo individuo = this.estado.getIndividuosDestacados().get(i);
+			Double aptitudPromedio = this.estado.getAptitudesPromedio().get(i);
 			
 			Logger.getLogger(
 					Logger.GLOBAL_LOGGER_NAME).log(
@@ -133,9 +130,7 @@ public class AlgoritmoGenetico {
 		
 		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Individuo mas Apto: " + this.individuos.get(0).toString());
 		
-		Collections.sort(individuosDestacados);
-		
-		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Individuo Campeon: " + individuosDestacados.get(0));
+		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Individuo Campeon: " + this.estado.getMejorIndividuoDestacado());
 		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Me falta: imprimir logs para estadisticas, Ruleta y Control sobre numero esperado, varias tecnicas de mutacion y cómo mutar");
 	}
 }

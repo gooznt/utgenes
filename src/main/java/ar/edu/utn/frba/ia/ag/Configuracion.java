@@ -11,7 +11,6 @@ import main.java.ar.edu.utn.frba.ia.ag.seleccion.Seleccion;
 public abstract class Configuracion {
 	
 	protected CriterioDeParo criterioDeParo;
-	protected boolean mantenerTamanoPoblacion;
 	protected int poblacionInicial;
 	protected int cantSeleccion; // solo es necesario si mantenerTamanoPoblacion es FALSE
 	protected Seleccion metodoDeSeleccion;
@@ -19,7 +18,6 @@ public abstract class Configuracion {
 	protected Mutacion mutacion;
 	
 	Configuracion(CriterioDeParo criterioDeParo,
-					boolean mantenerTamanoPoblacion,
 					int poblacionInicial,
 					int cantSeleccion,
 					Seleccion metodoDeSeleccion,
@@ -27,7 +25,6 @@ public abstract class Configuracion {
 					Mutacion mutacion) {
 		
 		this.criterioDeParo = criterioDeParo;
-		this.mantenerTamanoPoblacion = mantenerTamanoPoblacion;
 		this.poblacionInicial = poblacionInicial;
 		this.cantSeleccion = cantSeleccion; // solo es necesario si mantenerTamanoPoblacion es FALSE
 		this.metodoDeSeleccion = metodoDeSeleccion;
@@ -43,10 +40,6 @@ public abstract class Configuracion {
 	
 	public void setCriterioDeParo(CriterioDeParo criterioDeParo) {
 		this.criterioDeParo = criterioDeParo;
-	}
-
-	public void setMantenerTamanoPoblacion(boolean mantenerTamanoPoblacion) {
-		this.mantenerTamanoPoblacion = mantenerTamanoPoblacion;
 	}
 
 	public void setPoblacionInicial(int poblacionInicial) {
@@ -81,10 +74,6 @@ public abstract class Configuracion {
 		return cantSeleccion;
 	}
 	
-	public boolean getMantenerTamanoPoblacion() {
-		return mantenerTamanoPoblacion;
-	}
-
 	public Seleccion getMetodoDeSeleccion() {
 		return metodoDeSeleccion;
 	}
