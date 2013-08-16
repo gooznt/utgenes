@@ -5,17 +5,13 @@ import java.util.List;
 import main.java.ar.edu.utn.frba.ia.ag.Estado;
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
 
-public class MutacionSimple extends Mutacion {
+public class MutacionTemperaturaAscendente extends Mutacion {
 	
-	private double probabilidadConstante;
-	
-	public MutacionSimple(double probabilidadConstante) {
-		this.probabilidadConstante = probabilidadConstante;
-	}
+	private Mutacion mutacionAuxiliar = new MutacionTemperaturaDescendente();
 	
 	@Override
 	protected double getProbabilidadDeMutacion(List<Individuo> individuos, Estado estado) {
-		return probabilidadConstante;
+		return 1 - mutacionAuxiliar.getProbabilidadDeMutacion(individuos, estado);
 	}
 	
 }

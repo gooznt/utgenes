@@ -8,7 +8,8 @@ public class Estado {
 	
 	private List<Double> aptitudesPromedio;
 	private List<Double> totalAptitudes;
-	private List<Individuo> individuosDestacados;
+	private List<Individuo> mejoresIndividuos;
+	private List<Individuo> peoresIndividuos;
 	private int ciclos = 0;
 	
 	public void agregarTotalAptitudes(Double totalAptitudes) {
@@ -28,26 +29,48 @@ public class Estado {
 		
 		this.aptitudesPromedio.add(promedio);
 	}
-	public void agregarIndividuosDestacados(Individuo individuoDestacado) {
+	public void agregarMejorIndividuo(Individuo mejorIndividuo) {
 		
-		if (this.individuosDestacados == null) {
-			this.individuosDestacados = new ArrayList<Individuo>();
+		if (this.mejoresIndividuos == null) {
+			this.mejoresIndividuos = new ArrayList<Individuo>();
 		}
 		
-		this.individuosDestacados.add(individuoDestacado);
+		this.mejoresIndividuos.add(mejorIndividuo);
 	}
 	
-	public Individuo getMejorIndividuoDestacado() {
+	public void agregarPeorIndividuo(Individuo peorIndividuo) {
 		
-		List<Individuo> mejorIndividuosDestacados = this.individuosDestacados; // para no romer el orden original
+		if (this.peoresIndividuos == null) {
+			this.peoresIndividuos = new ArrayList<Individuo>();
+		}
 		
-		Collections.sort(mejorIndividuosDestacados);
-		
-		return mejorIndividuosDestacados.get(0);
+		this.peoresIndividuos.add(peorIndividuo);
 	}
 	
-	public List<Individuo> getIndividuosDestacados() {
-		return individuosDestacados;
+	public Individuo getMejorIndividuo() {
+		
+		List<Individuo> mejoresIndividuos = this.mejoresIndividuos; // para no romer el orden original
+		
+		Collections.sort(this.mejoresIndividuos);
+		
+		return mejoresIndividuos.get(0);
+	}
+	
+	public Individuo getPeorIndividuo() {
+		
+		List<Individuo> peoresIndividuos = this.peoresIndividuos; // para no romer el orden original
+		
+		Collections.sort(this.peoresIndividuos);
+		
+		return peoresIndividuos.get(peoresIndividuos.size() - 1);
+	}
+	
+	public List<Individuo> getMejoresIndividuos() {
+		return mejoresIndividuos;
+	}
+
+	public List<Individuo> getPeoresIndividuos() {
+		return peoresIndividuos;
 	}
 
 	public List<Double> getAptitudesPromedio() {

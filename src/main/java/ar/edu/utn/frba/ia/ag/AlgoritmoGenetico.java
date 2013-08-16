@@ -79,7 +79,8 @@ public class AlgoritmoGenetico {
 	private void estadisticas(Integer iteracion) {
 		
 		Double totalAptitudes = new Double(0);
-		Individuo individuoDestacado = this.individuos.get(0);
+		Individuo mejorIndividuo = this.individuos.get(0);
+		Individuo peorIndividuo = this.individuos.get(0);
 		
 		for (int i = 0; i < this.individuos.size(); i++) {
 			
@@ -87,15 +88,19 @@ public class AlgoritmoGenetico {
 			
 			totalAptitudes += individuo.aptitud();
 			
-			if (individuo.aptitud() > individuoDestacado.aptitud()) {
-				individuoDestacado = individuo;
+			if (individuo.esMasAptoQue(mejorIndividuo)) {
+				mejorIndividuo = individuo;
+			}
+			else if ( ! individuo.esMasAptoQue(peorIndividuo)) {
+				peorIndividuo = individuo;
 			}
 			
 		}
 		
 		this.estado.agregarTotalAptitudes(totalAptitudes);
 		this.estado.agregarAptitudesPromedio(totalAptitudes / this.individuos.size());
-		this.estado.agregarIndividuosDestacados(individuoDestacado);
+		this.estado.agregarMejorIndividuo(mejorIndividuo);
+		this.estado.agregarPeorIndividuo(peorIndividuo);
 		this.estado.setCiclos(iteracion);
 	}
 	
@@ -109,14 +114,14 @@ public class AlgoritmoGenetico {
 	}
 	
 	private void mutacion() {
-		this.configuracion.getMutacion().mutar(this.individuos);
+		this.configuracion.getMutacion().mutar(this.individuos, this.estado);
 	}
 	
 	private void loggearEstado() {
 		
-		for (int i = 0; i < this.estado.getIndividuosDestacados().size(); i++) {
+		for (int i = 0; i < this.estado.getMejoresIndividuos().size(); i++) {
 			
-			Individuo individuo = this.estado.getIndividuosDestacados().get(i);
+			Individuo individuo = this.estado.getMejoresIndividuos().get(i);
 			Double aptitudPromedio = this.estado.getAptitudesPromedio().get(i);
 			
 			Logger.getLogger(
@@ -130,7 +135,8 @@ public class AlgoritmoGenetico {
 		
 		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Individuo mas Apto: " + this.individuos.get(0).toString());
 		
-		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Individuo Campeon: " + this.estado.getMejorIndividuoDestacado());
+		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Individuo Campeon: " + this.estado.getMejorIndividuo());
+		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Peor Individuo: " + this.estado.getPeorIndividuo());
 		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Me falta: imprimir logs para estadisticas, Ruleta y Control sobre numero esperado, varias tecnicas de mutacion y cómo mutar");
 	}
 }

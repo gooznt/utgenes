@@ -1,5 +1,7 @@
 package main.java.ar.edu.utn.frba.ia.ag.ejemplos.maximo2d;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import main.java.ar.edu.utn.frba.ia.ag.AlgoritmoGenetico;
@@ -11,15 +13,40 @@ public class Optimizacion {
 	
 	public static void main(String[] args) {
 		
-		Configuracion config = new ConfiguracionDefault();
+		List<Individuo> ganadores = new ArrayList<Individuo>();
 		
-		AlgoritmoGenetico maximoLocal = new AlgoritmoGenetico(config, Combinaciones.class);
+		for (int i = 0; i < 10000; i++) {
 		
-		Individuo xyz = maximoLocal.ejecutar();
+			Configuracion config = new ConfiguracionDefault();
+			
+			AlgoritmoGenetico maximoLocal = new AlgoritmoGenetico(config, Combinaciones.class);
+			
+			Individuo xyz = maximoLocal.ejecutar();
+			
+			if (xyz.muto) {
+				System.out.println("El resultado es de un chabon que mutooo!!!");
+			}
+			
+			Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Individuo final: " + xyz.toString());
+			
+			ganadores.add(xyz);
+			
+			// Resultado Esperado https://docs.google.com/drawings/d/1i5sv1zcMGIulYWkuLcAv6UQV5haLKlKHm_FgiDWXdG0
+			
+		}
 		
-		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Individuo final: " + xyz.toString());
+		System.out.println("----------------------------------------------------------");
+		System.out.println("***** LOS GANADORES *****");
 		
-		// Resultado Esperado https://docs.google.com/drawings/d/1i5sv1zcMGIulYWkuLcAv6UQV5haLKlKHm_FgiDWXdG0
+		for (Individuo individuo : ganadores) {
+			
+			if (individuo.muto) {
+				System.out.println("MUTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+			}
+			System.out.println(individuo.toString());
+			
+		}
+		System.out.println("----------------------------------------------------------");
+		
 	}
-	
 }

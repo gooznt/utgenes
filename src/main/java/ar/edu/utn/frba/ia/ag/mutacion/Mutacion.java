@@ -3,13 +3,14 @@ package main.java.ar.edu.utn.frba.ia.ag.mutacion;
 import java.util.List;
 import java.util.logging.Logger;
 
+import main.java.ar.edu.utn.frba.ia.ag.Estado;
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
 
 public abstract class Mutacion {
 	
-	public void mutar(List<Individuo> individuos) {
+	public void mutar(List<Individuo> individuos, Estado estado) {
 		
-		if (Math.random() <= this.probabilidadDeMutacion()) {
+		if (Math.random() <= this.getProbabilidadDeMutacion(individuos, estado)) {
 			
 			Individuo individuoAleatorio = individuos.get((int)(Math.random() * individuos.size()));
 			
@@ -17,11 +18,13 @@ public abstract class Mutacion {
 
 			individuoAleatorio.mutar();
 			
+			individuoAleatorio.muto = Boolean.TRUE;
+
 			Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("MUTA -> nuevo individuo: " + individuoAleatorio.toString());
 			
 		}
 	}
-
-	protected abstract double probabilidadDeMutacion();
+	
+	protected abstract double getProbabilidadDeMutacion(List<Individuo> individuos, Estado estado);
 	
 }
