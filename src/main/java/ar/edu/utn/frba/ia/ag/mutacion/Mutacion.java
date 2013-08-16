@@ -18,8 +18,8 @@ public abstract class Mutacion {
 
 			individuoAleatorio.mutar();
 			
-			individuoAleatorio.muto = Boolean.TRUE;
-
+			estado.sumarMutacion();
+			
 			Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("MUTA -> nuevo individuo: " + individuoAleatorio.toString());
 			
 		}

@@ -14,9 +14,9 @@ public class MutacionAdaptativaPorConvergencia extends Mutacion {
 		Individuo peorIndividuo = estado.getPeoresIndividuos().get(estado.getPeoresIndividuos().size() - 1);
 		
 		// cuanto más distancia haya entre el mejor y el peor de los individuos, aumento la probabilidad de mutación
-		Double diferenciaMejorPeor = Math.abs(mejorIndividuo.aptitud() - peorIndividuo.aptitud());
+		double diferenciaMejorPeor = mejorIndividuo.aptitud() - peorIndividuo.aptitud();
 		
-		return 1 / (diferenciaMejorPeor > 0 ? diferenciaMejorPeor : 1);
+		return 1.0 - 1 /(diferenciaMejorPeor / estado.getAptitudesPromedio().get(estado.getAptitudesPromedio().size() - 1));
 		
 	}
 	

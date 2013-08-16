@@ -133,10 +133,11 @@ public class AlgoritmoGenetico {
 									+ individuo.toString());
 		}
 		
-		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Individuo mas Apto: " + this.individuos.get(0).toString());
+		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Individuo mas Apto: " + this.individuos.get(0).toString());
 		
-		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Individuo Campeon: " + this.estado.getMejorIndividuo());
-		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Peor Individuo: " + this.estado.getPeorIndividuo());
-		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Me falta: imprimir logs para estadisticas, Ruleta y Control sobre numero esperado, varias tecnicas de mutacion y cómo mutar");
+		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Cantidad de Veces que muto: " + this.estado.getCantMutaciones() + " / " + this.estado.getCiclos());
+		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Individuo Campeon: " + this.estado.getMejorIndividuo());
+		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Peor Individuo: " + this.estado.getPeorIndividuo());
+		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Me falta: imprimir logs para estadisticas, Ruleta y Control sobre numero esperado");
 	}
 }

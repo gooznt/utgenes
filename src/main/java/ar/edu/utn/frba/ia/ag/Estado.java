@@ -11,6 +11,7 @@ public class Estado {
 	private List<Individuo> mejoresIndividuos;
 	private List<Individuo> peoresIndividuos;
 	private int ciclos = 0;
+	private int cantMutaciones = 0;
 	
 	public void agregarTotalAptitudes(Double totalAptitudes) {
 		
@@ -92,5 +93,13 @@ public class Estado {
 	public void setCiclos(int ciclos) {
 		this.ciclos = ciclos;
 	}
+
+	public void sumarMutacion() {
+		this.cantMutaciones  ++;
+	}
 	
+	public int getCantMutaciones() {
+		return this.cantMutaciones;
+	}
+
 }

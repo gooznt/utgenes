@@ -8,8 +8,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 public abstract class Individuo implements Comparable<Individuo>, Cloneable {
 	
-	public Boolean muto = Boolean.FALSE;
-	
 	public abstract double aptitud();
 	
 	/**

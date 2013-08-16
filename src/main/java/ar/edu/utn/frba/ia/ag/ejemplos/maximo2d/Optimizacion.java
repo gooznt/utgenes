@@ -1,52 +1,30 @@
 package main.java.ar.edu.utn.frba.ia.ag.ejemplos.maximo2d;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 import main.java.ar.edu.utn.frba.ia.ag.AlgoritmoGenetico;
 import main.java.ar.edu.utn.frba.ia.ag.Configuracion;
 import main.java.ar.edu.utn.frba.ia.ag.ConfiguracionDefault;
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
+import main.java.ar.edu.utn.frba.ia.ag.mutacion.MutacionAdaptativaPorConvergencia;
 
 public class Optimizacion {
 	
 	public static void main(String[] args) {
 		
-		List<Individuo> ganadores = new ArrayList<Individuo>();
+		Configuracion config = new ConfiguracionDefault();
 		
-		for (int i = 0; i < 10000; i++) {
+		config.setMutacion(new MutacionAdaptativaPorConvergencia());
 		
-			Configuracion config = new ConfiguracionDefault();
-			
-			AlgoritmoGenetico maximoLocal = new AlgoritmoGenetico(config, Combinaciones.class);
-			
-			Individuo xyz = maximoLocal.ejecutar();
-			
-			if (xyz.muto) {
-				System.out.println("El resultado es de un chabon que mutooo!!!");
-			}
-			
-			Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Individuo final: " + xyz.toString());
-			
-			ganadores.add(xyz);
-			
-			// Resultado Esperado https://docs.google.com/drawings/d/1i5sv1zcMGIulYWkuLcAv6UQV5haLKlKHm_FgiDWXdG0
-			
-		}
+		AlgoritmoGenetico maximoLocal = new AlgoritmoGenetico(config, Combinaciones.class);
+		
+		Individuo xyz = maximoLocal.ejecutar();
 		
 		System.out.println("----------------------------------------------------------");
 		System.out.println("***** LOS GANADORES *****");
+		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Individuo final: " + xyz.toString());
 		
-		for (Individuo individuo : ganadores) {
-			
-			if (individuo.muto) {
-				System.out.println("MUTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-			}
-			System.out.println(individuo.toString());
-			
-		}
-		System.out.println("----------------------------------------------------------");
+		// Resultado Esperado https://docs.google.com/drawings/d/1i5sv1zcMGIulYWkuLcAv6UQV5haLKlKHm_FgiDWXdG0
 		
 	}
 }
