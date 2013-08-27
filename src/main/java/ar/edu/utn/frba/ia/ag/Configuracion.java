@@ -12,21 +12,18 @@ public abstract class Configuracion {
 	
 	protected CriterioDeParo criterioDeParo;
 	protected int poblacionInicial;
-	protected int cantSeleccion; // solo es necesario si mantenerTamanoPoblacion es FALSE
 	protected Seleccion metodoDeSeleccion;
 	protected Cruzamiento cruzamiento;
 	protected Mutacion mutacion;
 	
 	Configuracion(CriterioDeParo criterioDeParo,
 					int poblacionInicial,
-					int cantSeleccion,
 					Seleccion metodoDeSeleccion,
 					Cruzamiento cruzamiento,
 					Mutacion mutacion) {
 		
 		this.criterioDeParo = criterioDeParo;
 		this.poblacionInicial = poblacionInicial;
-		this.cantSeleccion = cantSeleccion; // solo es necesario si mantenerTamanoPoblacion es FALSE
 		this.metodoDeSeleccion = metodoDeSeleccion;
 		this.cruzamiento = cruzamiento;
 		this.mutacion = mutacion;
@@ -44,10 +41,6 @@ public abstract class Configuracion {
 
 	public void setPoblacionInicial(int poblacionInicial) {
 		this.poblacionInicial = poblacionInicial;
-	}
-
-	public void setCantSeleccion(int cantSeleccion) {
-		this.cantSeleccion = cantSeleccion;
 	}
 
 	public void setMetodoDeSeleccion(Seleccion metodoDeSeleccion) {
@@ -68,10 +61,6 @@ public abstract class Configuracion {
 	
 	public int getPoblacionInicial() {
 		return poblacionInicial;
-	}
-	
-	public int getCantSeleccion() {
-		return cantSeleccion;
 	}
 	
 	public Seleccion getMetodoDeSeleccion() {
