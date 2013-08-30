@@ -26,7 +26,7 @@ public class ControlSobreNumeroEsperado extends Seleccion {
 			partesDecimales.put(individuo, aptitudSobrePromedio - (int)aptitudSobrePromedio);
 			
 			for (int i = 0; i < (int)aptitudSobrePromedio ; i++) {
-				nuevos.add(individuo);
+				nuevos.add(individuo.clone());
 			}
 		}
 		

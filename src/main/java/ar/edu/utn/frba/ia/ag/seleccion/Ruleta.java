@@ -30,7 +30,6 @@ public class Ruleta extends Seleccion {
 			List<Double> probabilidadesAcumuladas = new ArrayList<Double>(panio.keySet());
 			Collections.sort(probabilidadesAcumuladas);
 			
-			
 			for (int j = 0; j < individuos.size(); j++) {
 				
 				Double jugadaRuleta = Math.random();
@@ -40,7 +39,7 @@ public class Ruleta extends Seleccion {
 					i++;
 				}
 				
-				nuevos.add(panio.get(probabilidadesAcumuladas.get(i)));
+				nuevos.add(panio.get(probabilidadesAcumuladas.get(i)).clone());
 			}
 		}
 		
