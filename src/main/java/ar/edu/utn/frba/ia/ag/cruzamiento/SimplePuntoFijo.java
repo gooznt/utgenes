@@ -5,7 +5,7 @@ import main.java.ar.edu.utn.frba.ia.ag.Individuo;
 public class SimplePuntoFijo extends Cruzamiento {
 	
 	Integer puntoDeCorte;
-	CruzamientoBinomialMascaraComplemento cruzamientoAuxiliarMascara;
+	BinomialMascaraComplemento cruzamientoAuxiliarMascara;
 	
 	public SimplePuntoFijo(Integer puntoDeCorte) {
 		
@@ -23,7 +23,7 @@ public class SimplePuntoFijo extends Cruzamiento {
 		
 	}
 	
-	private CruzamientoBinomialMascaraComplemento getCruzamientoAuxiliar(Individuo individuo) {
+	private BinomialMascaraComplemento getCruzamientoAuxiliar(Individuo individuo) {
 		
 		if (this.cruzamientoAuxiliarMascara == null) {
 			
@@ -37,7 +37,7 @@ public class SimplePuntoFijo extends Cruzamiento {
 				mascara.append(Cruzamiento.Y);
 			}
 			
-			this.cruzamientoAuxiliarMascara = new CruzamientoBinomialMascaraComplemento(mascara.toString());
+			this.cruzamientoAuxiliarMascara = new BinomialMascaraComplemento(mascara.toString());
 			
 		}
 		

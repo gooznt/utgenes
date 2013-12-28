@@ -37,7 +37,7 @@ public class SeleccionTest extends TestCase {
 	};
 	
 	@Test
-	public void torneoCantMenorTest() {
+	public void testTorneoCantMenor() {
 		
 		List<Individuo> unSoloIndividuo = new ArrayList<Individuo>();
 		
@@ -48,7 +48,7 @@ public class SeleccionTest extends TestCase {
 	}
 	
 	@Test
-	public void torneoCantParTest() {
+	public void testTorneoCantPar() {
 		
 		List<Individuo> par = new ArrayList<Individuo>();
 		
@@ -60,7 +60,7 @@ public class SeleccionTest extends TestCase {
 	}
 	
 	@Test
-	public void rankingCantMenorTest() {
+	public void testRankingCantMenor() {
 		
 		List<Individuo> unSoloIndividuo = new ArrayList<Individuo>();
 		
@@ -72,11 +72,11 @@ public class SeleccionTest extends TestCase {
 	}
 	
 	@Test
-	public void rankingTest() {
+	public void testRanking() {
 	}
 	
 	@Test
-	public void torneoTest() {
+	public void testTorneo() {
 	}
 	
 }

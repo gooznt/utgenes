@@ -4,14 +4,14 @@ import main.java.ar.edu.utn.frba.ia.ag.Individuo;
 
 public class BinomialAzar extends Cruzamiento {
 	
-	CruzamientoBinomialMascaraDoble cruzamientoAuxiliarMascara;
+	BinomialMascaraDoble cruzamientoAuxiliarMascara;
 	
 	@Override
 	protected void cruzar(Individuo padreA, Individuo padreB) {
 		this.getCruzamientoAuxiliar(padreA).cruzar(padreA, padreB);
 	}
 	
-	private CruzamientoBinomialMascaraDoble getCruzamientoAuxiliar(Individuo individuo) {
+	private BinomialMascaraDoble getCruzamientoAuxiliar(Individuo individuo) {
 		
 		if (this.cruzamientoAuxiliarMascara == null) {
 			
@@ -35,7 +35,7 @@ public class BinomialAzar extends Cruzamiento {
 				}
 			}
 			
-			this.cruzamientoAuxiliarMascara = new CruzamientoBinomialMascaraDoble(mascaraA.toString(), mascaraB.toString());
+			this.cruzamientoAuxiliarMascara = new BinomialMascaraDoble(mascaraA.toString(), mascaraB.toString());
 		}
 		
 		return this.cruzamientoAuxiliarMascara;

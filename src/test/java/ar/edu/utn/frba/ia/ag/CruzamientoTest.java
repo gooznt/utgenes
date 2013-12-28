@@ -5,18 +5,24 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
+import main.java.ar.edu.utn.frba.ia.ag.cruzamiento.BinomialMascaraComplemento;
 import main.java.ar.edu.utn.frba.ia.ag.cruzamiento.Cruzamiento;
-import main.java.ar.edu.utn.frba.ia.ag.cruzamiento.CruzamientoBinomialMascaraComplemento;
 
 import org.junit.Test;
 
 public class CruzamientoTest extends TestCase {
 	
 	@Test
-	public void cruzamientoBinomialMascaraComplementoTest() {
+	public void testCruzamientoBinomialMascaraComplemento() {
 		
-		IndividuoDePrueba padre = new IndividuoDePrueba(1, 2);
-		IndividuoDePrueba madre = new IndividuoDePrueba(3, 4);
+		IndividuoDePrueba padre = new IndividuoDePrueba();
+		IndividuoDePrueba madre = new IndividuoDePrueba();
+		
+		padre.setProp1(1);
+		padre.setProp2(2);
+		
+		madre.setProp1(3);
+		madre.setProp1(4);
 		
 		List<Individuo> individuos = new ArrayList<Individuo>();
 		
@@ -25,11 +31,11 @@ public class CruzamientoTest extends TestCase {
 		
 		String mascara = "";
 		
-		for (int i = 0; i < individuos.getClass().getDeclaredFields().length; i++) {
-			mascara.concat("X");
+		for (int i = 0; i < padre.getClass().getDeclaredFields().length; i++) {
+			mascara += "X";
 		}
 		
-		Cruzamiento cruzamiento = new CruzamientoBinomialMascaraComplemento(mascara);
+		Cruzamiento cruzamiento = new BinomialMascaraComplemento(mascara);
 		
 		cruzamiento.cruzarIndividuos(individuos);
 		

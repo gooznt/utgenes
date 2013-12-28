@@ -6,31 +6,29 @@ public class X extends Individuo {
 	
 	private Double x;
 	
+	@Override
+	public Individuo generarRandom() {
+		
+		X x = new X();
+		x.setX(Math.random() * 20);
+		return x;
+	}
+	
+	@Override
+	public double aptitud() {
+		
+		if (this.x < 0 || this.x > 15) {
+			return 0;
+		}
+		return Math.abs((this.x - 5) / (2 + Math.sin(this.x)));
+	}
+	
 	public Double getX() {
 		return x;
 	}
 	
 	public void setX(Double x) {
 		this.x = x;
-	}
-	
-	public double aptitud() {
-		
-		if (this.x < 0 || this.x > 15) {
-			return 0;
-		}
-		
-		return Math.abs((this.x - 5) / (2 + Math.sin(this.x)));
-	}
-	
-	@Override
-	public Individuo generarRandom() {
-		
-		X x = new X();
-		
-		x.setX(Math.random() * 15);
-		
-		return x;
 	}
 	
 	@Override

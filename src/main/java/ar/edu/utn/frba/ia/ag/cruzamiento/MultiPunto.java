@@ -8,7 +8,7 @@ public class MultiPunto extends Cruzamiento {
 	
 	List<Integer> puntosDeCorte;
 	
-	CruzamientoBinomialMascaraComplemento cruzamientoAuxiliarMascara;
+	BinomialMascaraComplemento cruzamientoAuxiliarMascara;
 	
 	public MultiPunto(List<Integer> puntosDeCorte) {
 		
@@ -35,7 +35,7 @@ public class MultiPunto extends Cruzamiento {
 		}
 	} 
 	
-	private CruzamientoBinomialMascaraComplemento getCruzamientoAuxiliar(Individuo individuo) {
+	private BinomialMascaraComplemento getCruzamientoAuxiliar(Individuo individuo) {
 		
 		if (this.cruzamientoAuxiliarMascara == null) {
 			
@@ -59,7 +59,7 @@ public class MultiPunto extends Cruzamiento {
 				mascara.append(template);
 			}
 			
-			this.cruzamientoAuxiliarMascara = new CruzamientoBinomialMascaraComplemento(mascara.toString());
+			this.cruzamientoAuxiliarMascara = new BinomialMascaraComplemento(mascara.toString());
 			
 		}
 		

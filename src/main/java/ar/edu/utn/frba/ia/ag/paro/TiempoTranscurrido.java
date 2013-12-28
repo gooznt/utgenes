@@ -8,7 +8,7 @@ import main.java.ar.edu.utn.frba.ia.ag.Individuo;
 
 public class TiempoTranscurrido extends CriterioDeParo {
 	
-	Date horaFin = new Date();
+	private Date horaFin = new Date();
 	
 	public TiempoTranscurrido(int horas, int minutos, int segundos) {
 		

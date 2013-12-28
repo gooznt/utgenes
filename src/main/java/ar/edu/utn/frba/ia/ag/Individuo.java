@@ -120,7 +120,7 @@ public abstract class Individuo implements Comparable<Individuo>, Cloneable {
 		
 		Field atributoAleatorio = (Field)UTgeNesUtils.alguno(this.getClass().getDeclaredFields());
 		
-		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Mutando atributo: " + atributoAleatorio.getName());
+//		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Mutando atributo: " + atributoAleatorio.getName());
 		
 		Method getter = UTgeNesUtils.armarGetter(this, atributoAleatorio);
 		Method setter = UTgeNesUtils.armarSetter(this, atributoAleatorio);

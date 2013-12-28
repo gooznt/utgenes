@@ -124,13 +124,17 @@ public class AlgoritmoGenetico {
 			Individuo individuo = this.estado.getMejoresIndividuos().get(i);
 			Double aptitudPromedio = this.estado.getAptitudesPromedio().get(i);
 			
-			Logger.getLogger(
-					Logger.GLOBAL_LOGGER_NAME).log(
-							Level.SEVERE,
-							"Promedio: "
-									+ aptitudPromedio
-									+ " // Mejor Individuo "
-									+ individuo.toString());
+//			Logger.getLogger(
+//					Logger.GLOBAL_LOGGER_NAME).log(
+//							Level.SEVERE,
+//							"Promedio: "
+//									+ aptitudPromedio
+//									+ " // Mejor Individuo "
+//									+ individuo.toString());
+
+//			System.out.println(this.estado.getMejoresIndividuos().get(i).aptitud() + "	"
+//							+ this.estado.getAptitudesPromedio().get(i) + "	"
+//							+ this.estado.getPeoresIndividuos().get(i).aptitud());
 		}
 		
 		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Individuo mas Apto: " + this.individuos.get(0).toString());
@@ -138,6 +142,5 @@ public class AlgoritmoGenetico {
 		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Cantidad de Veces que muto: " + this.estado.getCantMutaciones() + " / " + this.estado.getCiclos());
 		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Individuo Campeon: " + this.estado.getMejorIndividuo());
 		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Peor Individuo: " + this.estado.getPeorIndividuo());
-		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Me falta: imprimir logs para estadisticas, Ruleta y Control sobre numero esperado");
 	}
 }

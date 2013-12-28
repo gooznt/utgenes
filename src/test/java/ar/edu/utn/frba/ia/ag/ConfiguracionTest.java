@@ -1,23 +1,47 @@
 package test.java.ar.edu.utn.frba.ia.ag;
 
-public class ConfiguracionTest {
+import junit.framework.TestCase;
+import main.java.ar.edu.utn.frba.ia.ag.Configuracion;
+import main.java.ar.edu.utn.frba.ia.ag.Configuracion5Min;
+import main.java.ar.edu.utn.frba.ia.ag.ConfiguracionDefault;
+import main.java.ar.edu.utn.frba.ia.ag.cruzamiento.Simple;
+import main.java.ar.edu.utn.frba.ia.ag.mutacion.MutacionSimple;
+import main.java.ar.edu.utn.frba.ia.ag.paro.CantidadDeCiclos;
+import main.java.ar.edu.utn.frba.ia.ag.paro.TiempoTranscurrido;
+import main.java.ar.edu.utn.frba.ia.ag.seleccion.Torneo;
 
-// Problema
-	public int CICLOS = 9999;
+import org.junit.Test;
 
-// Población
+public class ConfiguracionTest extends TestCase {
 	
-	public int POBLACION_INICIAL = 999;
-	public boolean MANTENER_TAMANIO_POBLACION = Boolean.TRUE;
+	@Test
+	public void testConfiguracion5Min() {
+		
+		Configuracion config = new Configuracion5Min();
+		
+		assertFalse(config.getCriterioDeParo().parar(null));
+		assertEquals(TiempoTranscurrido.class.getName(), config.getCriterioDeParo().getClass().getName());
+		
+		assertEquals(MutacionSimple.class.getName(), config.getMutacion().getClass().getName());
+		assertEquals(Simple.class.getName(), config.getCruzamiento().getClass().getName());
+		assertEquals(Torneo.class.getName(), config.getMetodoDeSeleccion().getClass().getName());
+		assertEquals(999, config.getPoblacionInicial());
+		
+	}
 	
-// Selección
-	
-// Cruzamiento
-	
-	
-	
-// Mutación
-	
-	
+	@Test
+	public void testConfiguracionDefault() {
+		
+		Configuracion config = new ConfiguracionDefault();
+		
+		assertFalse(config.getCriterioDeParo().parar(null));
+		assertEquals(CantidadDeCiclos.class.getName(), config.getCriterioDeParo().getClass().getName());
+		
+		assertEquals(MutacionSimple.class.getName(), config.getMutacion().getClass().getName());
+		assertEquals(Simple.class.getName(), config.getCruzamiento().getClass().getName());
+		assertEquals(Torneo.class.getName(), config.getMetodoDeSeleccion().getClass().getName());
+		assertEquals(999, config.getPoblacionInicial());
+		
+	}
 	
 }

@@ -1,7 +1,6 @@
 package main.java.ar.edu.utn.frba.ia.ag.mutacion;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import main.java.ar.edu.utn.frba.ia.ag.Estado;
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
@@ -14,13 +13,13 @@ public abstract class Mutacion {
 			
 			Individuo individuoAleatorio = individuos.get((int)(Math.random() * individuos.size()));
 			
-			Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("MUTA -> individuo previo: " + individuoAleatorio.toString());
+//			Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("MUTA -> individuo previo: " + individuoAleatorio.toString());
 
 			individuoAleatorio.mutar();
 			
 			estado.sumarMutacion();
 			
-			Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("MUTA -> nuevo individuo: " + individuoAleatorio.toString());
+//			Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("MUTA -> nuevo individuo: " + individuoAleatorio.toString());
 			
 		}
 	}
