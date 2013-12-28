@@ -8,43 +8,21 @@ import main.java.ar.edu.utn.frba.ia.ag.Estado;
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
 import main.java.ar.edu.utn.frba.ia.ag.seleccion.Ranking;
 import main.java.ar.edu.utn.frba.ia.ag.seleccion.Seleccion;
+import main.java.ar.edu.utn.frba.ia.ag.seleccion.Torneo;
 
 import org.junit.Test;
 
 public class SeleccionTest extends TestCase {
 	
-	Individuo vacio = new Individuo() {
-		
-		@Override
-		public int compareTo(Individuo o) {
-			return 0;
-		}
-		
-		@Override
-		public boolean esMasAptoQue(Individuo otroIndividuo) {
-			return false;
-		}
-		
-		@Override
-		public double aptitud() {
-			return 0;
-		}
-
-		@Override
-		public Individuo generarRandom() {
-			return null;
-		}
-	};
-	
 	@Test
 	public void testTorneoCantMenor() {
 		
-		List<Individuo> unSoloIndividuo = new ArrayList<Individuo>();
+		List<Individuo> unicoIndividuo = new ArrayList<Individuo>();
 		
-		unSoloIndividuo.add(vacio);
+		unicoIndividuo.add(new IndividuoDePrueba());
 		
-		Seleccion selccion = new Ranking(2);
-		assertEquals(selccion.seleccionar(unSoloIndividuo, new Estado()), unSoloIndividuo.size());
+		Seleccion selccion = new Torneo();
+		assertEquals(selccion.seleccionar(unicoIndividuo, new EstadoDePrueba()).size(), unicoIndividuo.size());
 	}
 	
 	@Test
@@ -52,8 +30,8 @@ public class SeleccionTest extends TestCase {
 		
 		List<Individuo> par = new ArrayList<Individuo>();
 		
-		par.add(vacio);
-		par.add(vacio);
+		par.add(new IndividuoDePrueba());
+		par.add(new IndividuoDePrueba());
 		
 		Seleccion selccion = new Ranking(0);
 		assertEquals(selccion.seleccionar(par, new Estado()), par);
@@ -64,10 +42,10 @@ public class SeleccionTest extends TestCase {
 		
 		List<Individuo> unSoloIndividuo = new ArrayList<Individuo>();
 		
-		unSoloIndividuo.add(vacio);
+		unSoloIndividuo.add(new IndividuoDePrueba());
 		
 		Seleccion selccion = new Ranking(0);
-		assertEquals(selccion.seleccionar(unSoloIndividuo, new Estado()), unSoloIndividuo.size());
+		assertEquals(selccion.seleccionar(unSoloIndividuo, new EstadoDePrueba()).size(), unSoloIndividuo.size());
 		
 	}
 	

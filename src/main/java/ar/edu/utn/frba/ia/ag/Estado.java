@@ -22,7 +22,7 @@ public class Estado {
 		this.totalAptitudes.add(totalAptitudes);
 	}
 	
-	public void agregarAptitudesPromedio(double promedio) {
+	public void agregarAptitudesPromedio(Double promedio) {
 		
 		if (this.aptitudesPromedio == null) {
 			this.aptitudesPromedio = new ArrayList<Double>();
