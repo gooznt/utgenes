@@ -35,16 +35,22 @@ public class IndividuoDePrueba extends Individuo {
 	public void setProp2(int prop2) {
 		this.prop2 = prop2;
 	}
-
+	
+	public IndividuoDePrueba() {
+		
+		this.setProp1((int)(Math.random() * 100));
+		this.setProp2((int)(Math.random() * 100));
+	}
+	
 	@Override
 	public Individuo generarRandom() {
-		
-		IndividuoDePrueba individuo = new IndividuoDePrueba();
-		
-		individuo.setProp1((int)(Math.random() * 100));
-		individuo.setProp2((int)(Math.random() * 100));
-		
-		return individuo;
+		return this.clone();
 	}
+	
+	@Override
+	public String toString() {
+		return (new Double(aptitud())).toString();
+	}
+	
 	
 }

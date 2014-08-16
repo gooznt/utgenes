@@ -4,8 +4,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.logging.Logger;
 
-import org.apache.commons.lang3.RandomStringUtils;
-
 public abstract class Individuo implements Comparable<Individuo>, Cloneable {
 	
 	public abstract double aptitud();
@@ -37,7 +35,7 @@ public abstract class Individuo implements Comparable<Individuo>, Cloneable {
 				Class<?> clazz = UTgeNesUtils.armarGetter(nuevoIndividuo, atributo).getReturnType();
 				
 				if (String.class.isAssignableFrom(clazz)) {
-					UTgeNesUtils.armarSetter(nuevoIndividuo, atributo).invoke(nuevoIndividuo, RandomStringUtils.randomAlphabetic(10));
+					UTgeNesUtils.armarSetter(nuevoIndividuo, atributo).invoke(nuevoIndividuo, UTgeNesUtils.armarRandomString(10));
 				}
 				else {
 					if (Number.class.isAssignableFrom(clazz)) {

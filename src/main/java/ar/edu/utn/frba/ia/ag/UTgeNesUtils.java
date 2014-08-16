@@ -50,4 +50,18 @@ public abstract class UTgeNesUtils {
 		return elementos[(int)(Math.random() * elementos.length)];
 	}
 	
+	public static String armarRandomString(int length) {
+		
+		String alfabeto = "abcdefghijklmnopqrstuvwxyz";
+		StringBuffer buffer = new StringBuffer("");
+		
+		for (int i = 0; i < length; i++) {
+			double index = Math.random() * alfabeto.length();
+			buffer.append(alfabeto.charAt((int) index));
+		}
+		
+		return buffer.toString();
+		
+	}
+	
 }

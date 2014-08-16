@@ -8,7 +8,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="/home/gustavo/.m2/repository/junit/junit/4.10/junit-4.10.jar"/>
-	<classpathentry kind="lib" path="/home/gustavo/.m2/repository/org/apache/commons/commons-lang3/3.0.1/commons-lang3-3.0.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
