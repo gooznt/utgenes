@@ -16,7 +16,7 @@ public abstract class Configuracion {
 	protected Cruzamiento cruzamiento;
 	protected Mutacion mutacion;
 	
-	Configuracion(CriterioDeParo criterioDeParo,
+	protected Configuracion(CriterioDeParo criterioDeParo,
 					int poblacionInicial,
 					Seleccion metodoDeSeleccion,
 					Cruzamiento cruzamiento,

@@ -15,7 +15,6 @@ public class Test {
 		Configuracion config = new ConfiguracionDefault();
 		
 		config.setPoblacionInicial(5);
-//		config.setMetodoDeSeleccion(new Ruleta());
 		config.setMetodoDeSeleccion(new ControlSobreNumeroEsperado());
 		
 		AlgoritmoGenetico test = new AlgoritmoGenetico(config, IndividuoDePrueba.class);
@@ -24,7 +23,7 @@ public class Test {
 		
 		System.out.println("----------------------------------------------------------");
 		System.out.println("***** SOLUCION *****");
-		System.out.println("Efectividad del algoritmo: " + new Double((int)((ind.aptitud()*100/100)*100)) / 100 + "%");
+		System.out.println("Efectividad del algoritmo: " + new Double((int)(ind.aptitud()*100)) / 10 + "%");
 		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Individuo final: " + ind.toString());
 		
 	}

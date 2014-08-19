@@ -52,5 +52,4 @@ public class IndividuoDePrueba extends Individuo {
 		return (new Double(aptitud())).toString();
 	}
 	
-	
 }
