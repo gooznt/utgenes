@@ -7,7 +7,7 @@ Antes de comenzar, es mejor darle un vistazo a la [wiki](https://github.com/gooz
 
 No olvides seguir a @UTgeNes en twitter para estar al tanto de las novedades.
 
-Ante cualquier duda, no dudes en contactarme para lo que necesites.
+No dudes en contactarme para lo que necesites.
 
 Saludos!
 
