@@ -6,45 +6,25 @@ import java.util.List;
 
 public class Estado {
 	
-	private List<Double> aptitudesPromedio;
-	private List<Double> totalAptitudes;
-	private List<Individuo> mejoresIndividuos;
-	private List<Individuo> peoresIndividuos;
+	private List<Double> aptitudesPromedio = new ArrayList<Double>();
+	private List<Double> totalAptitudes = new ArrayList<Double>();
+	private List<Individuo> mejoresIndividuos = new ArrayList<Individuo>();
+	private List<Individuo> peoresIndividuos = new ArrayList<Individuo>();
 	private int ciclos = 0;
 	private int cantMutaciones = 0;
 	
 	public void agregarTotalAptitudes(Double totalAptitudes) {
-		
-		if (this.totalAptitudes == null) {
-			this.totalAptitudes = new ArrayList<Double>();
-		}
-		
 		this.totalAptitudes.add(totalAptitudes);
 	}
 	
 	public void agregarAptitudesPromedio(Double promedio) {
-		
-		if (this.aptitudesPromedio == null) {
-			this.aptitudesPromedio = new ArrayList<Double>();
-		}
-		
 		this.aptitudesPromedio.add(promedio);
 	}
 	public void agregarMejorIndividuo(Individuo mejorIndividuo) {
-		
-		if (this.mejoresIndividuos == null) {
-			this.mejoresIndividuos = new ArrayList<Individuo>();
-		}
-		
 		this.mejoresIndividuos.add(mejorIndividuo);
 	}
 	
 	public void agregarPeorIndividuo(Individuo peorIndividuo) {
-		
-		if (this.peoresIndividuos == null) {
-			this.peoresIndividuos = new ArrayList<Individuo>();
-		}
-		
 		this.peoresIndividuos.add(peorIndividuo);
 	}
 	
@@ -54,7 +34,7 @@ public class Estado {
 		
 		Collections.sort(this.mejoresIndividuos);
 		
-		return mejoresIndividuos.get(0);
+		return mejoresIndividuos.isEmpty() ? null : mejoresIndividuos.get(0);
 	}
 	
 	public Individuo getPeorIndividuo() {
@@ -63,7 +43,7 @@ public class Estado {
 		
 		Collections.sort(this.peoresIndividuos);
 		
-		return peoresIndividuos.get(peoresIndividuos.size() - 1);
+		return peoresIndividuos.isEmpty() ? null : peoresIndividuos.get(peoresIndividuos.size() - 1);
 	}
 	
 	public List<Individuo> getMejoresIndividuos() {

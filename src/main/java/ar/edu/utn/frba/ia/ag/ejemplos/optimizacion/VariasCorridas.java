@@ -18,7 +18,7 @@ public class VariasCorridas {
 		for (int i = 0; i < 100; i++) {
 		
 			Configuracion config = new ConfiguracionDefault();
-			
+
 			AlgoritmoGenetico maximoLocal = new AlgoritmoGenetico(config, Combinaciones.class);
 			
 			Individuo xyz = maximoLocal.ejecutar();

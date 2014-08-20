@@ -124,17 +124,17 @@ public class AlgoritmoGenetico {
 			Individuo individuo = this.estado.getMejoresIndividuos().get(i);
 			Double aptitudPromedio = this.estado.getAptitudesPromedio().get(i);
 			
-//			Logger.getLogger(
-//					Logger.GLOBAL_LOGGER_NAME).log(
-//							Level.SEVERE,
-//							"Promedio: "
-//									+ aptitudPromedio
-//									+ " // Mejor Individuo "
-//									+ individuo.toString());
-
-//			System.out.println(this.estado.getMejoresIndividuos().get(i).aptitud() + "	"
-//							+ this.estado.getAptitudesPromedio().get(i) + "	"
-//							+ this.estado.getPeoresIndividuos().get(i).aptitud());
+			Logger.getLogger(
+					Logger.GLOBAL_LOGGER_NAME).log(
+							Level.SEVERE,
+							"Promedio: "
+									+ aptitudPromedio
+									+ " // Mejor Individuo "
+									+ individuo.toString());
+			
+			System.out.println(this.estado.getMejoresIndividuos().get(i).aptitud() + "	"
+					+ this.estado.getAptitudesPromedio().get(i) + "	"
+					+ this.estado.getPeoresIndividuos().get(i).aptitud());
 		}
 		
 		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Individuo mas Apto: " + this.individuos.get(0).toString());

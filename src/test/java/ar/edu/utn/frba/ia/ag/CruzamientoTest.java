@@ -3,14 +3,14 @@ package test.java.ar.edu.utn.frba.ia.ag;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
 import main.java.ar.edu.utn.frba.ia.ag.cruzamiento.BinomialMascaraComplemento;
 import main.java.ar.edu.utn.frba.ia.ag.cruzamiento.Cruzamiento;
 
+import org.junit.Assert;
 import org.junit.Test;
 
-public class CruzamientoTest extends TestCase {
+public class CruzamientoTest {
 	
 	@Test
 	public void testCruzamientoBinomialMascaraComplemento() {
@@ -39,8 +39,8 @@ public class CruzamientoTest extends TestCase {
 		
 		cruzamiento.cruzarIndividuos(individuos);
 		
-		assertEquals(individuos.get(0).toString(), padre.toString());
-		assertEquals(individuos.get(1).toString(), madre.toString());
+		Assert.assertEquals(individuos.get(0).toString(), padre.toString());
+		Assert.assertEquals(individuos.get(1).toString(), madre.toString());
 		
 	}	
 	

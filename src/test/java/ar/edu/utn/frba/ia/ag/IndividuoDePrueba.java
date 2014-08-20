@@ -7,9 +7,6 @@ public class IndividuoDePrueba extends Individuo {
 	private int prop1;
 	private int prop2;
 	
-//	public IndividuoDePrueba() {
-//	}
-//	
 //	public IndividuoDePrueba(int prop1, int prop2) {
 //		this.setProp1(prop1);
 //		this.setProp2(prop2);

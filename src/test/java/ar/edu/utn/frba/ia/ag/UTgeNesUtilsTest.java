@@ -1,13 +1,13 @@
-package main.java.ar.edu.utn.frba.ia.ag;
+package test.java.ar.edu.utn.frba.ia.ag;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import main.java.ar.edu.utn.frba.ia.ag.UTgeNesUtils;
+
 import org.junit.Assert;
 import org.junit.Test;
-
-import test.java.ar.edu.utn.frba.ia.ag.IndividuoDePrueba;
 
 public class UTgeNesUtilsTest {
 	

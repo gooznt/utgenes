@@ -1,8 +1,8 @@
-package test.java.ar.edu.utn.frba.ia.ag.testEjemplo;
+package test.java.ar.edu.utn.frba.ia.ag;
 
 import main.java.ar.edu.utn.frba.ia.ag.Individuo;
 
-public class IndividuoDePrueba extends Individuo {
+public class IndividuoDePruebaX extends Individuo {
 	
 	private Integer x;
 	
@@ -19,10 +19,10 @@ public class IndividuoDePrueba extends Individuo {
 	@Override
 	public Individuo generarRandom() {
 		
-		IndividuoDePrueba ind = new IndividuoDePrueba();
+		IndividuoDePruebaX ind = new IndividuoDePruebaX();
 		
 		ind.setX((int)(Math.random() * 12));
-//		ind.setX(3);
+		
 		return ind;
 	}
 	
@@ -38,4 +38,5 @@ public class IndividuoDePrueba extends Individuo {
 	public void setX(Integer x) {
 		this.x = x;
 	}
+	
 }
