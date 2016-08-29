@@ -8,9 +8,7 @@ public class Simple extends Cruzamiento {
 	
 	@Override
 	protected void cruzar(Individuo padreA, Individuo padreB) {
-		
 		this.getCruzamientoAuxiliar(padreA).cruzar(padreA, padreB);
-		
 	}
 	
 	private BinomialMascaraComplemento getCruzamientoAuxiliar(Individuo individuo) {

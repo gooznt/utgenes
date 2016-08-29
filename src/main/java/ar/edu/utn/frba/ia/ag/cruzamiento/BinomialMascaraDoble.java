@@ -77,8 +77,12 @@ public class BinomialMascaraDoble extends Cruzamiento {
 			setter = UTgeNesUtils.armarSetter(padreA, field);
 			
 			try {
-				setter.invoke(padreA, (this.mascaraA.charAt(i) == Cruzamiento.X.toCharArray()[0]) ? getter.invoke(padreA) : getter.invoke(padreB));
-				setter.invoke(padreB, (this.mascaraB.charAt(i) == Cruzamiento.X.toCharArray()[0]) ? getter.invoke(padreA) : getter.invoke(padreB));
+				
+				Object valorGenA = getter.invoke(padreA);
+				Object valorGenB = getter.invoke(padreB);
+				
+				setter.invoke(padreA, (this.mascaraA.charAt(i) == Cruzamiento.X.toCharArray()[0]) ? valorGenA : valorGenB);
+				setter.invoke(padreB, (this.mascaraB.charAt(i) == Cruzamiento.X.toCharArray()[0]) ? valorGenA : valorGenB);
 			}
 			
 			catch (Exception e) {

@@ -142,4 +142,29 @@ public abstract class Individuo implements Comparable<Individuo>, Cloneable {
 		return;
 	}
 	
+    @Override
+    public String toString() {
+        
+        String genes = new String();
+        
+        for (Field field : this.getClass().getDeclaredFields()){
+            
+            Method getter = UTgeNesUtils.armarGetter(this,field);
+            
+            try {
+            	genes += (field.getName() + "= " + getter.invoke(this) + " ");
+            }
+            catch (Exception e) {
+				Logger.getLogger(
+					Logger.GLOBAL_LOGGER_NAME).severe(
+						"Fallo intentando acceder al atributo '"
+						+ field
+						+ "' del Idividuo"
+						+ "// CAUSA: " + e);
+            }
+        }
+        
+        return "Aptitud = " + this.aptitud() + " || Genes: " + genes;
+    }
+	
 }
