@@ -32,13 +32,17 @@ public class IndividuoDePrueba extends Individuo {
 	public void setProp2(int prop2) {
 		this.prop2 = prop2;
 	}
-	
+
 	public IndividuoDePrueba() {
-		
 		this.setProp1((int)(Math.random() * 100));
 		this.setProp2((int)(Math.random() * 100));
 	}
-	
+
+	public IndividuoDePrueba(int prop1, int prop2) {
+		this.setProp1(prop1);
+		this.setProp2(prop2);
+	}
+
 	@Override
 	public Individuo generarRandom() {
 		return this.clone();

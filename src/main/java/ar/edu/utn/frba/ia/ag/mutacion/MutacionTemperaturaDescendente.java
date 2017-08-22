@@ -10,7 +10,7 @@ public class MutacionTemperaturaDescendente extends Mutacion {
 	@Override
 	protected double getProbabilidadDeMutacion(List<Individuo> individuos, Estado estado) {
 		
-		return 1.0 / (estado.getCiclos() > 0 ? estado.getCiclos() : 1);
+		return 1.0 / (estado.getCorridas() > 0 ? estado.getCorridas() : 1);
 	}
 	
 }

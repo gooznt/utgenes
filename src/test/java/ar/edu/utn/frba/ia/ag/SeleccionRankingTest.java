@@ -7,7 +7,7 @@ public class SeleccionRankingTest extends SeleccionTestBase {
 	
 	@Override
 	protected Seleccion crearSeleccion() {
-		return new Ranking(1);
+		return new Ranking(2);
 	}
 	
 }

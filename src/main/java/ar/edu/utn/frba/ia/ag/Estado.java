@@ -7,7 +7,7 @@ import java.util.List;
 public class Estado {
 	
 	private List<Double> aptitudesPromedio = new ArrayList<Double>();
-	private List<Double> totalAptitudes = new ArrayList<Double>();
+	private List<Double> totalAptitudes = new ArrayList<Double>(); // suma total de aptitudes de al corrida actual
 	private List<Individuo> mejoresIndividuos = new ArrayList<Individuo>();
 	private List<Individuo> peoresIndividuos = new ArrayList<Individuo>();
 	private int ciclos = 0;
@@ -20,6 +20,7 @@ public class Estado {
 	public void agregarAptitudesPromedio(Double promedio) {
 		this.aptitudesPromedio.add(promedio);
 	}
+
 	public void agregarMejorIndividuo(Individuo mejorIndividuo) {
 		this.mejoresIndividuos.add(mejorIndividuo);
 	}
@@ -39,7 +40,7 @@ public class Estado {
 	
 	public Individuo getPeorIndividuo() {
 		
-		List<Individuo> peoresIndividuos = this.peoresIndividuos; // para no romer el orden original
+		List<Individuo> peoresIndividuos = this.peoresIndividuos; // para no romper el orden original
 		
 		Collections.sort(this.peoresIndividuos);
 		
@@ -66,12 +67,8 @@ public class Estado {
 		return totalAptitudes.get(totalAptitudes.size() - 1);
 	}
 
-	public int getCiclos() {
-		return ciclos;
-	}
-
-	public void setCiclos(int ciclos) {
-		this.ciclos = ciclos;
+	public int getCorridas() {
+		return this.totalAptitudes.size();
 	}
 
 	public void sumarMutacion() {
@@ -80,6 +77,33 @@ public class Estado {
 	
 	public int getCantMutaciones() {
 		return this.cantMutaciones;
+	}
+
+	public void generarEstadisticas(List<Individuo> individuos) {
+
+		Double totalAptitudes = new Double(0);
+		Individuo mejorIndividuo = individuos.get(0);
+		Individuo peorIndividuo = individuos.get(0);
+
+		for (int i = 0; i < individuos.size(); i++) {
+
+			Individuo individuo = individuos.get(i);
+
+			totalAptitudes += individuo.aptitud();
+
+			if (individuo.esMasAptoQue(mejorIndividuo)) {
+				mejorIndividuo = individuo;
+			}
+			else if ( ! individuo.esMasAptoQue(peorIndividuo)) {
+				peorIndividuo = individuo;
+			}
+
+		}
+
+		this.agregarTotalAptitudes(totalAptitudes);
+		this.agregarAptitudesPromedio(totalAptitudes / individuos.size());
+		this.agregarMejorIndividuo(mejorIndividuo);
+		this.agregarPeorIndividuo(peorIndividuo);
 	}
 
 }

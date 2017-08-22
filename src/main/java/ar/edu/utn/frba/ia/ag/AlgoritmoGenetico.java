@@ -54,19 +54,15 @@ public class AlgoritmoGenetico {
 			Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).log(Level.FINE, individuo.toString());
 		}
 		
-		Integer iteracion = new Integer(0);
-		
 		while (!this.configuracion.getCriterioDeParo().parar(this.individuos)) {
 			
-			this.estadisticas(iteracion);
+			this.estado.generarEstadisticas(individuos);
 			
 			this.seleccion();
 			
 			this.cruzamiento();
 			
 			this.mutacion();
-			
-			iteracion++;
 		}
 		
 		Collections.sort(this.individuos);
@@ -76,37 +72,8 @@ public class AlgoritmoGenetico {
 		return this.individuos.get(0);
 	}
 	
-	private void estadisticas(Integer iteracion) {
-		
-		Double totalAptitudes = new Double(0);
-		Individuo mejorIndividuo = this.individuos.get(0);
-		Individuo peorIndividuo = this.individuos.get(0);
-		
-		for (int i = 0; i < this.individuos.size(); i++) {
-			
-			Individuo individuo = this.individuos.get(i);
-			
-			totalAptitudes += individuo.aptitud();
-			
-			if (individuo.esMasAptoQue(mejorIndividuo)) {
-				mejorIndividuo = individuo;
-			}
-			else if ( ! individuo.esMasAptoQue(peorIndividuo)) {
-				peorIndividuo = individuo;
-			}
-			
-		}
-		
-		this.estado.agregarTotalAptitudes(totalAptitudes);
-		this.estado.agregarAptitudesPromedio(totalAptitudes / this.individuos.size());
-		this.estado.agregarMejorIndividuo(mejorIndividuo);
-		this.estado.agregarPeorIndividuo(peorIndividuo);
-		this.estado.setCiclos(iteracion);
-	}
-	
 	private void seleccion() {
 		this.individuos = this.configuracion.getMetodoDeSeleccion().seleccionar(this.individuos, this.estado);
-		
 	}
 	
 	private void cruzamiento() {
@@ -139,7 +106,7 @@ public class AlgoritmoGenetico {
 		
 		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Individuo mas Apto: " + this.individuos.get(0).toString());
 		
-		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Cantidad de Veces que muto: " + this.estado.getCantMutaciones() + " / " + this.estado.getCiclos());
+		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Cantidad de Veces que muto: " + this.estado.getCantMutaciones() + " / " + this.estado.getCorridas());
 		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Individuo Campeon: " + this.estado.getMejorIndividuo());
 		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Peor Individuo: " + this.estado.getPeorIndividuo());
 	}
